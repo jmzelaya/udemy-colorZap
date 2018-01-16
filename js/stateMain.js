@@ -104,7 +104,15 @@ var StateMain = {
     this.ball.y=yy;
 
     //Setting y to 100 will cause object to fall straight down
-    this.ball.body.velocity.setTo(0, 100);
+    // this.ball.body.velocity.setTo(0, 100);
+
+    //Use moveToXY to move the ball to the ring
+    //Params --> objectToMove, x, y, and speed (defined earlier);
+    //Returns a number --> degrees of rotation
+    var rot=game.physics.arcade.moveToXY(this.ball, this.ring.x, this.ring.y, this.speed);
+      //Set ball's rotation to above value
+      //Makes the ball point the the ring! (Whaaat?! Mind Blown 🤯);
+      this.ball.rotation = rot;
   },
 
   changeColor:function (target){
@@ -130,8 +138,16 @@ var StateMain = {
     this.ring.frame=0;
   },
 
+  //constant running loop
   update: function () {
-    //constant running loop
+    //Math.abs ignores negative values so,
+    // -5 = 5;
+    var diffX=Math.abs(this.ring.x - this.ball.x);
+    var diffY=Math.abs(this.ring.y - this.ball.y);
+
+    if(diffX<10 && diffY<10){
+      this.ball.body.velocity.setTo(0,0);
+    }
   }
 
 };
