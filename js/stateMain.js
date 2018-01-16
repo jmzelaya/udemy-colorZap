@@ -9,6 +9,10 @@ var StateMain = {
     //Load the rings spritesheet
     game.load.spritesheet("rings", "images/main/rings.png", 60, 65, 5);
     game.load.spritesheet("balls", "images/main/balls.png", 35, 35, 5);
+
+    game.load.audio("points", "colorZapSounds/sounds/points.mp3");
+    game.load.audio("gameOver", "colorZapSounds/sounds/gameOver.mp3");
+
   },
 
   //Create function:
@@ -25,6 +29,10 @@ var StateMain = {
     //Start the Physics engine (Phaser has several);
     //Physics can only be applied to SPRITES! Not images!!
     game.physics.startSystem(Phaser.Physics.Arcade);
+
+    //Add instance of Audio to the game
+    this.pointSound = game.add.audio("points");
+    this.gameOverSound = game.add.audio("gameOver");
 
     //👉🏼 BLOCKS
     //Add the blocks to the stage
@@ -171,8 +179,10 @@ var StateMain = {
         this.resetBall();
         score++;
         this.scoreText.text=score;
+        this.pointSound.play();
       }
       else{
+        this.gameOverSound.play();
         //If the frames don't match load the game over screen :)
         game.state.start("StateOver");
 
