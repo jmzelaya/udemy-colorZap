@@ -20,6 +20,28 @@ var StateMain = {
     var green=game.add.image(100,0,"green");
     var yellow=game.add.image(100,100,"yellow");
 
+    //Create listeners for each of the blocks
+    red.inputEnabled=true;
+    //Give the listener an identifying name (for when it's clicked)
+    red.name="red";
+
+    blue.inputEnabled=true;
+    blue.name="blue";
+
+    green.inputEnabled=true;
+    green.name="green";
+
+    yellow.inputEnabled=true;
+    yellow.name="yellow";
+
+    //This create an eventHandler (you defined) to handle what happens
+    //When the image is clicked
+    red.events.onInputDown.add(this.changeColor, this);
+    blue.events.onInputDown.add(this.changeColor, this);
+    green.events.onInputDown.add(this.changeColor, this);
+    yellow.events.onInputDown.add(this.changeColor, this);
+
+
     //Create a group for the blocks
     this.blockGroup=game.add.group();
     //Add blocks to the group
@@ -38,6 +60,10 @@ var StateMain = {
     this.blockGroup.y=game.height-250;
 
 
+  },
+
+  changeColor:function (target){
+    console.log(target.name);
   },
 
   update: function () {
