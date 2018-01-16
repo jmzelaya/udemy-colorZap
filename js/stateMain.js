@@ -95,12 +95,18 @@ var StateMain = {
   },
 
   resetBall: function(){
+    //Choose a color at random
     var color=game.rnd.integerInRange(0, 5);
+    //Choose an x pos at random
     var xx=game.rnd.integerInRange(0, game.world.width);
+    //Choose a y at random
     var yy=game.rnd.integerInRange(0, 100);
 
+    //Set the ball's frame the chosen color
     this.ball.frame= color;
+    //Set the ball's x to the random x
     this.ball.x=xx;
+    //Set the ball's y to the random y
     this.ball.y=yy;
 
     //Setting y to 100 will cause object to fall straight down
@@ -147,6 +153,10 @@ var StateMain = {
 
     if(diffX<10 && diffY<10){
       this.ball.body.velocity.setTo(0,0);
+
+      if(this.ball.frame==this.ring.frame){
+        this.resetBall();
+      }
     }
   }
 
