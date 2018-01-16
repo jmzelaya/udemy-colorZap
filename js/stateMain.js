@@ -70,6 +70,21 @@ var StateMain = {
 
   changeColor:function (target){
     console.log(target.name);
+    //0=white 1=blue 2=green 3=red 4=yellow
+    switch(target.name){
+        case "red":
+                this.ring.frame=3;
+            break;
+        case "blue":
+                this.ring.frame=1;
+            break;
+        case "green":
+                this.ring.frame=2;
+            break;
+        case "yellow":
+                this.ring.frame=4;
+            break;
+    }
   },
 
   update: function () {
