@@ -5,6 +5,9 @@ var StateMain = {
     game.load.image("blue", "images/main/blocks/blue.png");
     game.load.image("green", "images/main/blocks/green.png");
     game.load.image("yellow", "images/main/blocks/yellow.png");
+
+    //Load the rings spritesheet
+    game.load.spritesheet("rings", "images/main/rings.png", 60, 65, 5);
   },
 
   //Create function:
@@ -55,10 +58,13 @@ var StateMain = {
     this.blockGroup.x=game.world.centerX-
     //Use width of group and divide by 2 to get center
     this.blockGroup.width/2;
-
     //Set y of the game and -250 for padding
     this.blockGroup.y=game.height-250;
 
+    //Add ring to state, centerX for horizontal centering and
+    //use the blockGroup's y for vertical subtract 100 to add 100px padding
+    this.ring=game.add.image(game.world.centerX, this.blockGroup.y-100, "rings");
+    this.ring.anchor.set(0.5, 0.5);
 
   },
 
