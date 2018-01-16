@@ -18,6 +18,14 @@ var StateMain = {
   create: function () {
     //Use console.log("Ready!") to check that startButton works
 
+    //👉🏼 VARS
+    this.speed = 200;
+
+    //Start the Physics engine (Phaser has several);
+    //Physics can only be applied to SPRITES! Not images!!
+    game.physics.startSystem(Phaser.Physics.Arcade);
+
+    //👉🏼 BLOCKS
     //Add the blocks to the stage
     var red=game.add.image(0,0, "red");
     var blue=game.add.image(0,100,"blue");
@@ -62,14 +70,20 @@ var StateMain = {
     //Set y of the game and -250 for padding
     this.blockGroup.y=game.height-250;
 
+    //👉🏼 RING
     //Add ring to state, centerX for horizontal centering and
     //use the blockGroup's y for vertical subtract 100 to add 100px padding
     this.ring=game.add.image(game.world.centerX, this.blockGroup.y-100, "rings");
     this.ring.anchor.set(0.5, 0.5);
 
+    //👉🏼 BALL
     //add balls to stage
-    this.ball=game.add.image(0,0, "balls");
+    this.ball=game.add.sprite(0,0, "balls");
     this.ball.anchor.set(0.5, 0.5);
+    //Enable physics for the ball
+    //If there are multiple items can add in an [Array]
+    //Adding physics give the object a 'body'
+    game.physics.arcade.enable(this.ball);
 
     this.setListeners();
 
@@ -88,6 +102,9 @@ var StateMain = {
     this.ball.frame= color;
     this.ball.x=xx;
     this.ball.y=yy;
+
+    //Setting y to 100 will cause object to fall straight down
+    this.ball.body.velocity.setTo(0, 100);
   },
 
   changeColor:function (target){
