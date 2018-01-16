@@ -4,7 +4,7 @@ var StateTitle = {
     game.load.image("logo", "images/title/gameLogo.png");
     //Load a spritesheet --> params (4, optional 5)
     //refName, imgPath, imgWidth, imgHeight, optional: # of sprites
-    game.load.spritesheet("buttons", "images/ui/buttons.png", 265, 75);
+    game.load.spritesheet("buttons", "images/ui/buttons.png", 264, 75);
     //Lock screen orientation for mobile
     //Has 2 parameters (lanscape, portrait)
     //Takes a boolean for each

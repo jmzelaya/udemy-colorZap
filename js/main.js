@@ -1,4 +1,7 @@
 var game;
+//Adding var to main gives ALL states access to it.
+var score;
+
 window.onload = function(){
   if(screen.width>1500){
     game = new Phaser.Game(480, 640, Phaser.AUTO, "ph_game");

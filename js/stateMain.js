@@ -20,6 +20,7 @@ var StateMain = {
 
     //👉🏼 VARS
     this.speed = 200;
+    score = 0;
 
     //Start the Physics engine (Phaser has several);
     //Physics can only be applied to SPRITES! Not images!!
@@ -84,6 +85,18 @@ var StateMain = {
     //If there are multiple items can add in an [Array]
     //Adding physics give the object a 'body'
     game.physics.arcade.enable(this.ball);
+
+    //👉🏼 SCORE TEXT
+    this.scoreText = game.add.text(game.world.centerX, 150,"0");
+    this.scoreText.fill="#ffffff";
+    this.scoreText.fontSize=64;
+    this.scoreText.anchor.set(0.5, 0.5);
+
+    this.scoreLabel = game.add.text(game.world.centerX, 100,"SCORE");
+    this.scoreLabel.fill="#ffffff";
+    this.scoreLabel.fontSize=32;
+    this.scoreLabel.anchor.set(0.5, 0.5);
+
 
     this.setListeners();
 
@@ -156,8 +169,11 @@ var StateMain = {
 
       if(this.ball.frame==this.ring.frame){
         this.resetBall();
+        score++;
+        this.scoreText.text=score;
       }
       else{
+        //If the frames don't match load the game over screen :)
         game.state.start("StateOver");
 
       }
