@@ -24,6 +24,8 @@ var StateMain = {
 
     //👉🏼 VARS
     this.speed = 200;
+    this.incSpeed=20;
+    this.maxSpeed=450;
     score = 0;
 
     //Start the Physics engine (Phaser has several);
@@ -140,6 +142,11 @@ var StateMain = {
       //Set ball's rotation to above value
       //Makes the ball point the the ring! (Whaaat?! Mind Blown 🤯);
       this.ball.rotation = rot;
+
+      this.speed+=this.incSpeed;
+      if(this.speed > this.maxSpeed){
+        this.speed=this.maxSpeed;
+      }
   },
 
   changeColor:function (target){
