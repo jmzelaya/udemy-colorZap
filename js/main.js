@@ -1,6 +1,7 @@
 var game;
 //Adding var to main gives ALL states access to it.
 var score;
+var soundOn=true;
 
 window.onload = function(){
   if(screen.width>1500){
