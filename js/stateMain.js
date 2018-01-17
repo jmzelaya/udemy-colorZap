@@ -213,9 +213,9 @@ var StateMain = {
         }
       }
       else{
-        this.gameOverSound.play();
         //If the frames don't match load the game over screen :)
         if(soundOn===true){
+          this.gameOverSound.play();
         }
         game.state.start("StateOver");
       }
